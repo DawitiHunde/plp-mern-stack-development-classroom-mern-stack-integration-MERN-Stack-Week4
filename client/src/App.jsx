@@ -1,20 +1,21 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import PostView from './pages/PostView';
-import PostForm from './pages/PostForm';
-import { AppProvider } from './context/AppContext';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PostList from './components/PostList';
+import PostView from './components/PostView';
+import PostForm from './components/PostForm';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/posts/:id" element={<PostView />} />
-          <Route path="/create" element={<PostForm />} />
-        </Routes>
-      </BrowserRouter>
-    </AppProvider>
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path='/' element={<PostList />} />
+        <Route path='/posts/:id' element={<PostView />} />
+        <Route path='/posts/edit/:id' element={<PostForm />} />
+        <Route path='/posts/new' element={<PostForm />} />
+      </Routes>
+    </Router>
   );
 }
 
